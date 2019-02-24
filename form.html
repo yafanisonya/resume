@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>formTest</title>
+</head>
+<body>
+    <form action="/abc" method="POST">
+    <div class="username">
+        <label>姓名：<input type="text" placeholder="用户名"></label>
+    </div>
+    <div class="password">
+        <label>密码：<input type="password" value="mima"></label>
+    </div>
+    <div class="sex">
+        <span>性别：</span>
+        <label><input type="radio" name="sex" value="male" checked>男</label>
+        <label><input type="radio" name="sex" value="female">女</label>
+    </div>
+    <div class="choice">
+        <span>取向：</span>
+        <label><input type="radio" name="sexchoice" value="male">男</label>
+        <label><input type="radio" name="sexchoice" value="female" checked>女</label>
+    </div>
+    <div class="hobby"> 
+        <span>爱好：</span>
+        <label><input type="checkbox" name="hobby" value="dota">dota</label>
+        <label><input type="checkbox" name="hobby" value="trip" checked>旅游</label>
+        <label><input type="checkbox" name="hobby" value="pet" checked>宠物</label>
+    </div>
+    <div class="comment">
+        <label>评论：<textarea name="textarea" placeholder="ddd"></textarea></label>
+    </div>  
+    <label>我的car：
+        <select name="car">
+            <option value="1" selected>萨博</option>
+            <option value="1">奔驰</option>
+        </select>
+    </label>
+    <button>提交</button>  
+    </form>
+</body>
+</html>
