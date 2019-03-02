@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+    .main {
+      width: 180px;
+      height: 90px;
+      border: 1px solid grey;
+      position: relative;
+      margin-top: 30px;
+    }
+    .main:before {
+      width: 0;
+      height: 0;
+      border: 12px solid transparent;
+      border-top: 12px solid red;
+      border-right: 12px solid red;
+      margin-left: 157px;
+      position: absolute;
+    }
+    .main:before {
+      content: '';
+    }
+  </style>
+</head>
+<body>
+  <div class="main"></div>
+</body>
+</html>
