@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>三栏布局</title>
+  <style>
+    .content:after{
+      content:'';
+      display:block;
+      clear:both;
+    }
+    .lef{
+      width:200px;
+      height:380px;
+      float:left;
+      background:red;
+    }
+    .rig{
+      width:200px;
+      height:380px;
+      float:right;
+      background:blue;
+    }
+    .main{
+      background:pink;
+      margin-left:210px;
+      margin-right:210px;
+      height:480px;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="lef"></div>
+    <div class="rig"></div>
+    <div class="main"></div>
+  </div>
+</body>
+</html>
