@@ -1,0 +1,296 @@
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color:white;
+}
+.clearfix::after {
+  content:'';
+  display: block;
+  clear: both;
+}
+html,body{
+  /* width:100%; */
+  height:100%;
+}
+header {
+  background: #000 url(../img/back11.jpg)center center no-repeat;
+  height:100%;
+  min-height:600px;
+  background-size: cover;
+}
+nav > a {
+  /* float:left; */
+  color:#fff;
+  font-size:40px;
+  font-weight: bold;
+  display: inline-block;
+  margin:30px 0 0 30px;
+}
+nav ul {
+  float:right;
+}
+nav ul li {
+  float:left;
+}
+nav ul li a {
+  display:inline-block;
+  padding:15px;
+  font-size:20px;
+  font-weight: bold;
+  margin-top:30px;
+
+}
+nav ul li a:hover {
+  /* color:rgb(240, 209, 54); */
+  background:rgb(240, 209, 54);
+  border-radius:7px;
+}
+header .welc {
+  width:800px;
+  margin:0 auto;
+  text-align:center;
+}
+header .welc h1{
+  color:rgb(155, 37, 37);
+  font-size:45px;
+  font-style:italic;
+  margin-top:200px;
+  margin-bottom:30px;
+}
+header .welc h2{
+  color:rgb(155, 37, 37);
+  font-size:60px;
+  /* margin-left:50px; */
+}
+header .welc .button,.contact .button{
+  font-size:23px;
+  padding:15px 30px;
+  display:inline-block;
+  margin-top:40px;
+  background:rgba(240, 209, 54,0.9);
+  border-radius: 8px;
+}
+header .welc .button:hover,.contact .button:hover{
+  background:rgba(240, 209, 54,1);
+}
+.leading,.supporting{
+  text-align:center;
+}
+.leading h3,.supporting h3,.about h3,.team h3{
+  text-align: center;
+  margin-top:100px;
+  font-size: 40px;
+  color:rgb(51, 51, 51);
+}
+.leading>p,.supporting>p,.about>p,.team>p,.contact>p{
+  text-align: center;
+  font-style: italic;
+  margin-top:40px;
+  color:rgb(51, 51, 51);
+}
+.leading li{
+  float:left;
+  width:50%;
+  padding:10px 20px;
+  margin-top:50px;
+}
+.leading h4{
+  margin:20px;
+}
+.leading img{
+  width:36%;
+}
+.supporting,.team{
+  margin-top:140px;
+}
+.supporting li{
+  display: inline-block;
+  width:33%;
+}
+.supporting li{
+  margin:10px 0px 20px;
+}
+.supporting img{
+  width:40%;
+}
+.supporting li h4{
+  font-size:20px;
+  font-weight: bold;
+  margin:10px 0 5px;
+}
+.supporting li span{
+  font-style: italic;
+}
+.about img{
+  width:150px;
+  height:150px;
+  border-radius: 50%;
+  border:3px solid lightgrey;
+  margin:0 15px;
+  object-fit: cover;
+}
+.about li:nth-child(odd){
+  box-sizing: border-box;
+  text-align:right;
+  padding-right: calc(50%);
+  margin-top:100px;
+  margin-left:240px;
+  position: relative;
+}
+.about li:nth-child(odd) img{
+  float:right;
+}
+.about li:nth-child(even){
+  box-sizing: border-box;
+  text-align:left;
+  padding-left: calc(50%);
+  margin-top:100px;
+  margin-left:-180px;
+  margin-right:400px;
+  position: relative;
+}
+.about li:nth-child(even) img{
+  float:left;
+}
+.about ul{
+  margin-left: 160px;
+}
+.about dl dt{
+  font-weight:bold;
+  padding:5px 0;
+}
+.about dl dd{
+  font-family:Helvetica;
+  color:gray;
+}
+.about li::before{
+  content:'';
+  display: inline-block;
+  height:105px;
+  width:6px;
+  background-color: lightgray;
+  position: absolute;
+  top:150px;
+}  
+.about li:nth-child(odd)::before{
+  margin-left:-95px;
+}
+.about li:nth-child(even)::before{
+  margin-left:85px;
+}
+.about li:last-child::before{
+  height:0px;
+  width:0px;
+}
+.team .out{
+  max-width:1000px;
+  margin:0 auto;
+} 
+.team .common img{
+  width:250px;
+  height:250px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.team .common{
+  float:left;
+  margin-top:40px;
+  padding:40px;
+  text-align: center;
+}
+.team .common h4{
+  padding:20px 0 5px;
+}
+.team .common ul>li{
+ display: inline-block;
+ background: black;
+ border-radius: 50%;
+ margin:15px 5px;
+}
+.team .common ul>li>a{
+  color:white;
+  font-size: 35px;
+ }
+ .team .out p{
+  text-align: center;
+  color:lightslategray;
+ }
+ .team .log a{
+  display: inline-block;
+  padding:80px 20px;
+  margin-top:250px;
+ }
+ .team .log a:first-child{
+   margin-left:280px;
+ }
+ .contact{
+  background:rgb(37, 36, 36) url(http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/map-image.png) center center no-repeat;
+  height:100%;
+  min-height:600px;
+  background-size: cover;
+  color:white;
+}
+.contact h3{
+  text-align: center;
+  font-size: 40px;
+  padding-top:140px;
+  color:white;
+}
+.contact p{
+  color:white;
+}
+.contact .out .aside{
+  float:left;
+  margin-left:280px;
+  margin-top:25px;
+}
+.contact .out .aside input{
+  display:block;
+  margin-top:20px;
+  padding:20px;
+  width:470px;
+  border-radius: 4px;
+}
+.contact .out .texta{
+  float:left;
+}
+.contact .out .texta textarea{
+  resize:none; 
+  width:540px; 
+  height:240px;
+  margin-left:30px;
+  margin-top:40px;
+  border-radius: 4px;
+  font-size: 16px;
+  color:rgb(51, 51, 51);
+}
+.contact .button{
+  margin-left:650px;
+  margin-bottom:150px;
+}
+footer  ul li{
+  display: inline-block;
+  background: black;
+  border-radius: 50%;
+  margin:15px 5px;
+ }
+ footer ul li a {
+   font-size:25px;
+ }
+footer .commfoo{
+  display: inline-block;
+  padding-left:241px;
+}
+footer .commfoo > a {
+  color:rgb(254, 209, 141);
+  font-size:12px;
+  padding:10px;
+  font-family: bold;
+}
