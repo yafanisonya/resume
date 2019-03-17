@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body>
+  <div class="container">
+    <div class="box">box1</div>
+    <div class="box">box2</div>
+    <div class="box">box3</div>
+  </div>
+  <button id="add">add</button>
+  <script>
+    function $(selector){
+      return document.querySelector(selector)
+    }
+    function $$(selector){
+      return document.querySelectorAll(selector)
+    }
+
+    $$('.box').forEach(function(node){
+      node.onclick = function(){
+        console.log(this.innerText)
+      }
+    })
+
+    $('.container').onclick = function(e){
+    //   console.log('------')
+    //   console.log(this)
+    //   console.log(e.target)
+      if(e.target.classList.contains('box')){
+        console.log(e.target.innerText)
+      }
+    }
+
+    var i = 4
+    $('#add').onclick = function(){
+      var box = document.createElement('div')
+      box.classList.add('box')
+      box.innerText = 'box' + (i++)
+      $('.container').appendChild(box)
+    }
+  </script>
+</body>
+</html>
