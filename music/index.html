@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>音乐播放器</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+<body>
+    <div class="cover"></div>
+    <div class="musicbox">
+        <div class="music-panel">
+            <div class="music">
+                <div class="control">
+                    <span class="back"><i class="fa fa-step-backward"></i></span>
+                    <span class="play"><i class="fa fa-pause"></i></span>
+                    <span class="forward"><i class="fa fa-step-forward"></i></span>
+                </div>
+                <div class="info">
+                    <div class="title">My Song</div>
+                    <div class="auther">fanison</div>
+                </div>           
+            </div> 
+        </div>
+        <div class="progress">
+            <div class="bar">
+                <div class="progress-total"></div>
+                <div class="progress-now"></div>
+            </div>
+            <div class="time">0:00</div>
+        </div>
+    </div>
+    <script>
+        var musicList = [
+            {
+            src: 'http://other.web.ri01.sycdn.kuwo.cn/resource/n1/73/40/4073043717.mp3',
+            title: '光年之外',
+            auther: 'G.E.M.邓紫棋',
+            img:'https://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D500/sign=e83ab0a6a6af2eddd0f149e9bd110102/48540923dd54564e0c6b2a99b9de9c82d1584f00.jpg'
+            },            
+            {
+            src: 'http://other.web.ri03.sycdn.kuwo.cn/resource/n3/59/41/3810743077.mp3',
+            title: 'Faded',
+            auther: 'Alan Walker ',
+            img:'https://gss0.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/37d12f2eb9389b5092854b8f8c35e5dde6116ef1.jpg'
+            },
+            {
+            src:'http://other.web.nf03.sycdn.kuwo.cn/resource/n1/4/30/1974022094.mp3',
+            title:'无赖',
+            auther:'郑中基',
+            img:'https://cdn.viagogo.net/img/cat/37994/1/37.jpg'
+            }
+            
+        ]
+        var cover = document.querySelector('.cover')    
+        var backBtn = document.querySelector('.musicbox .back')
+        var playBtn = document.querySelector('.musicbox .play')
+        var forwardBtn = document.querySelector('.musicbox .forward')
+        var titleNode = document.querySelector('.musicbox .title')
+        var authorNode = document.querySelector('.musicbox .auther')
+        var timeNode = document.querySelector('.musicbox .time')
+        var progressBarNode = document.querySelector('.musicbox .progress .bar')
+        var progressNowNode = document.querySelector('.musicbox .progress-now')
+        var timer
+        
+        var music = new Audio()
+        music.autoplay = true
+        var musicIndex = 0
+        
+        loadMusic(musicList[musicIndex])
+        
+        playBtn.onclick = function(){
+        var icon = this.querySelector('.fa')
+        if(icon.classList.contains('fa-play')){
+            music.play()
+        }else{
+            music.pause()
+        }
+        icon.classList.toggle('fa-play')
+        icon.classList.toggle('fa-pause')
+        }
+        
+        forwardBtn.onclick = loadNextMusic
+        backBtn.onclick = loadLastMusic
+        music.onended = loadNextMusic
+        music.shouldUpdate = true
+        
+        
+        music.onplaying = function(){
+            timer = setInterval(function(){
+            updateProgress()
+            }, 1000)
+            console.log('play')
+        }
+        music.onpause = function(){
+            console.log('pause')
+            clearInterval(timer)
+        }
+
+        progressBarNode.onclick = function(e){
+            var percent = e.offsetX/parseInt(getComputedStyle(this).width)
+            music.currentTime = percent * music.duration
+            progressNowNode.style.width = percent*100+"%"
+        }
+             
+        function loadMusic(songObj){
+            music.src = songObj.src
+            titleNode.innerText = songObj.title
+            authorNode.innerText = songObj.auther
+            cover.style.backgroundImage = 'url(' + songObj.img + ')'
+        }
+        
+        function loadNextMusic(){
+            musicIndex++
+            musicIndex = musicIndex%musicList.length
+            loadMusic(musicList[musicIndex])  
+        }
+        
+        function loadLastMusic(){
+            musicIndex--
+            musicIndex = (musicIndex + musicList.length)%musicList.length
+            loadMusic(musicList[musicIndex])  
+        }
+        
+        function updateProgress(){
+            var percent = (music.currentTime/music.duration)*100+'%'
+            progressNowNode.style.width = percent
+            
+            var minutes = parseInt(music.currentTime/60)
+            var seconds = parseInt(music.currentTime%60)+''
+            seconds = seconds.length == 2? seconds : '0'+seconds
+            timeNode.innerText = minutes + ':' + seconds
+        }
+  
+    </script>
+</body>
+
+</html>
