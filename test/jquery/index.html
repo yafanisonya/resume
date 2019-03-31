@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="layout">
+        <h1>乱七八糟</h1>
+        <ul class="prod-ct clearfix">
+         <li class="prod">
+           <div class="cover"><a class="btn  action-delete" href="">删除</a></div>
+           <a href="#">
+             <img src="//picsum.photos/200/200/?image=1" alt="">
+             <div class="prod-name">first</div>
+             <div class="prod-price">￥666</div>
+           </a>
+         </li>
+         <li class="prod">
+           <div class="cover"><a class="btn  action-delete" href="">删除</a></div>
+           <a href="#">
+             <img src="//picsum.photos/200/200/?image=2" alt="">
+             <div class="prod-name">second</div>
+             <div class="prod-price">￥888</div>
+           </a>
+         </li>
+         <li class="prod">
+           <div class="cover"><a class="btn  action-delete" href="">删除</a></div>
+           <a href="#">
+             <img src="//picsum.photos/200/200/?image=3" alt="">
+             <div class="prod-name">third</div>
+             <div class="prod-price">￥999</div>
+           </a>
+         </li>
+        </ul>   
+        <a href="#" class="btn btn-add">添加</a><a href="#" class="btn btn-edit">编辑</a>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script>
+        function getProdHtml(prod){
+            var html = '';
+            html += '<li class="prod">';
+            html +=   '<div class="cover"><a class="btn action-delete" href="#">删除</a></div>'
+            html +=    '<a href="#">'
+            html +=      '<img src="'+prod.img+'" alt="">'
+            html +=      '<div class="prod-name">'+prod.name+'</div>'
+            html +=      '<div class="prod-price">'+prod.price+'</div>'
+            html +=    '</a>'
+            html += '</li>';
+            return html;
+        }
+
+        function getData(){
+        var results = []
+        for(var i = 0; i<3; i++){
+        var rand = Math.floor(Math.random()*100)
+        var product = 	{
+                img: '//picsum.photos/200/200/?image='+rand,
+                name: '随机添加',
+                price: '￥'+rand
+            } 
+        results.push(product)
+        }
+        
+        return results
+        }
+
+        $('.btn-add').on('click', function(e){
+            e.preventDefault();
+            $('.prod').removeClass('hover')
+            var products = getData()
+            $.each(products, function(idx, prod){
+                var html = getProdHtml(prod)
+                $('.prod-ct').append(html)
+            })
+        })
+
+
+        $('.btn-edit').on('click', function(e){
+            e.preventDefault();
+            $('.prod').toggleClass('hover')
+        })
+
+        $('.prod-ct').on('click', '.action-delete', function(e){
+        e.preventDefault()
+        $(this).parents('.prod').remove()
+        })
+    </script>
+</body>
+</html>

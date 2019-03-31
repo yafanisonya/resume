@@ -255,7 +255,7 @@ header .welc .button:hover,.contact .button:hover{
   display:block;
   margin-top:20px;
   padding:20px;
-  width:470px;
+  width:300px;
   border-radius: 4px;
 }
 .contact .out .texta{
@@ -263,7 +263,7 @@ header .welc .button:hover,.contact .button:hover{
 }
 .contact .out .texta textarea{
   resize:none; 
-  width:540px; 
+  width:400px; 
   height:240px;
   margin-left:30px;
   margin-top:40px;
@@ -272,7 +272,7 @@ header .welc .button:hover,.contact .button:hover{
   color:rgb(51, 51, 51);
 }
 .contact .button{
-  margin-left:650px;
+  margin-left:500px;
   margin-bottom:150px;
 }
 footer  ul li{
@@ -286,7 +286,7 @@ footer  ul li{
  }
 footer .commfoo{
   display: inline-block;
-  padding-left:241px;
+  padding-left:180px;
 }
 footer .commfoo > a {
   color:rgb(254, 209, 141);
