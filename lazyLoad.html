@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>lazyLoad</title>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+  <style>
+    .container{
+      max-width:800px;
+      margin:0 auto;
+    }
+    .container:after{
+      content:'';
+      display: block;
+      clear:both;
+    }
+    .container img {
+      float:left;
+      width:50%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+      <img src="https://yafanisonya.github.io/resume/houseofcards/img/loading.gif" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg">
+      <img src="https://yafanisonya.github.io/resume/houseofcards/img/loading.gif" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg">
+      <img src="https://yafanisonya.github.io/resume/houseofcards/img/loading.gif" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg">
+      <img src="https://yafanisonya.github.io/resume/houseofcards/img/loading.gif" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg">
+      <img src="https://yafanisonya.github.io/resume/houseofcards/img/loading.gif" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/5.jpg">
+      <img src="https://yafanisonya.github.io/resume/houseofcards/img/loading.gif" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/6.jpg">
+      <img src="https://yafanisonya.github.io/resume/houseofcards/img/loading.gif" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/7.jpg">
+      <img src="https://yafanisonya.github.io/resume/houseofcards/img/loading.gif" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/8.jpg">
+      <img src="https://yafanisonya.github.io/resume/houseofcards/img/loading.gif" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/9.jpg">
+      <img src="https://yafanisonya.github.io/resume/houseofcards/img/loading.gif" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/10.jpg">
+      <img src="https://yafanisonya.github.io/resume/houseofcards/img/loading.gif" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/11.jpg">
+      <img src="https://yafanisonya.github.io/resume/houseofcards/img/loading.gif" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/12.jpg">
+      <img src="https://yafanisonya.github.io/resume/houseofcards/img/loading.gif" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/13.jpg">
+      <img src="https://yafanisonya.github.io/resume/houseofcards/img/loading.gif" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/14.jpg">
+      <img src="https://yafanisonya.github.io/resume/houseofcards/img/loading.gif" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/15.jpg">
+      <img src="https://yafanisonya.github.io/resume/houseofcards/img/loading.gif" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/16.jpg">
+  </div>
+  <script>
+    start()
+    $(window).on('scroll',function(){
+      start()
+    })
+    function start(){
+      $('.container img').not('[data-isLoaded]').each(function(){
+        var $node = $(this)
+        if( isShow($node)){
+          loadImg($node)
+        }
+      })
+    }
+    function isShow($node){
+      return $node.offset().top <= $(window).height() + $(window).scrollTop()
+    }
+    function loadImg($img){
+      $img.attr('src',$img.attr('data-src'))
+      $img.attr('data-isLoaded',1)
+    }
+  </script>
+</body>
+</html>
