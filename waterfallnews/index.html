@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="ct-waterfall">
+      <ul id="pic-ct" class="clearfix">
+        <li class="item hide"></li>
+      </ul>
+      <div id="load"></div>
+    </div>
+  </div>
+</body>
+  <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+    var curPage = 1
+    var perPageCount = 10
+    var colSumHeight = []
+    var nodeWidth = $('.item').outerWidth(true)
+    var colNum = parseInt($('#pic-ct').width()/nodeWidth)
+    for(var i = 0; i<colNum;i++){
+      colSumHeight[i] = 0
+    }
+    var isDataArrive = true
+    start()
+    function start(){
+      getData(function(newsList){
+        isDataArrive = true
+        $.each(newsList,function(idx,news){
+          var $node = getNode(news)
+          $node.find('img').load(function(){
+            $('#pic-ct').append($node)
+            waterFallPlace($node)
+          })
+        })
+      })
+      isDataArrive = false;
+    }
+    $(window).scroll(function(){
+      if(!isDataArrive) return
+      if(isVisible($('#load'))){
+        start()
+      }
+    })
+    function getData(callback){
+      $.ajax({
+        url:'https://photo.sina.cn/aj/v2/index?cate=military',
+        dataType:'jsonp',
+        jsonp:'callback',
+        data:{
+          pagesize:perPageCount,
+          page:curPage
+        }
+      }).done(function(ret){
+        if(ret && ret.code ==1 ){
+          callback(ret.data)
+          curPage++
+        }else{
+          console.log('get error data');
+        }
+      })
+    }
+    function getNode(item){
+      var tpl = ''
+          tpl += '<li class="item">'
+          tpl += '<a href="' + item.url +'" class="link"><img src="' + item.thumb + '" alt=""></a>'
+          tpl += '<h4 class="header">' + item.stitle + '</h4>'
+          tpl += '<p class="desp">' + item.title + '</p>'
+          tpl += '</li>'
+          return $(tpl) 
+    }
+    function waterFallPlace($node){
+      var idx = 0,
+          minSumHeight = colSumHeight[0]
+      for(var i = 0;i<colSumHeight.length;i++){
+        if(colSumHeight[i] < minSumHeight){
+          idx = i
+          minSumHeight = colSumHeight[i]
+        }
+      }
+      $node.css({
+        left: nodeWidth * idx,
+        top: minSumHeight,
+        opacity:1
+      })
+      colSumHeight[idx] = $node.outerHeight(true) + colSumHeight[idx]
+      $('#pic-ct').height(Math.max.apply(null,colSumHeight))
+    }
+    function isVisible($el){
+      var scrollH = $(window).scrollTop(),
+          winH = $(window).height(),
+          top = $el.offset().top
+      if(top < winH + scrollH){
+          return true
+      }else{
+        return false
+      }
+    }
+  </script>
+</html>
